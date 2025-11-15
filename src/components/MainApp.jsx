@@ -1,7 +1,8 @@
-import { useState, useEffect, use } from 'react'
+import { useState, useEffect } from 'react'
 import Search from './Search.jsx'
 import Spinner from './Spinner.jsx'
 import MovieCard from './MovieCard.jsx'
+import useDebounce from '../hooks/useDebounce'
 
 // Je configure les briques pour faire fonctionner l'API
 const API_BASE_URL = 'https://api.themoviedb.org/3'
@@ -23,6 +24,10 @@ function MainApp() {
   const [movieList, setMovieList] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  //   J'utilise le hook de debounce pour eviter de faire trop de requetes a l'API quand l'utilisateur tape son mot cle
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
 
     //   C'est la fonction qui va s'occuper de recuperer les films et de soumettre les requetes
   const fetchMovies = async (query = '') => {
@@ -49,19 +54,21 @@ function MainApp() {
 
     //   Si j'arrive la, c'est que tout s'est bien passe
       setMovieList(data.results || []);
-      setIsLoading(false);
 
     
     } catch (error) {
       console.error(`Error fetching movies: ${error}`);
       setErrorMessage('Error fetching movies. Please try again later.');
-    } 
+    }finally {
+        // Dans tout les cas, je desactive le chargement
+      setIsLoading(false);
+    }
   }
 
     //   J'appelle la fonction une fois des l'execution
   useEffect(() => {
-    fetchMovies();
-  }, []);
+    fetchMovies(debouncedSearchTerm);
+  }, [debouncedSearchTerm]);
 
   return (
     <main> 
