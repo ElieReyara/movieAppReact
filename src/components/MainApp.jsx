@@ -7,7 +7,7 @@ import { getTrendingMovies, updateSearchCount } from '../appwrite'
 
 // Je configure les briques pour faire fonctionner l'API
 const API_BASE_URL = 'https://api.themoviedb.org/3'
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY
+const API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYjYxNzhlNGExM2Y2YWY0MDhmN2QyYmJmNzgxNDg3YiIsIm5iZiI6MTc2MjE3MjM0MC42NzI5OTk5LCJzdWIiOiI2OTA4OWRiNGZiODcxOTIzMDJlMTMwMDUiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.3J7fFMRgr1P5E0h01jtgckR33WogQK0hcrQmj0dQWl0'
 const API_OPTIONS = {
   method: 'GET',
   headers: {

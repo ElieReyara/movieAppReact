@@ -1,8 +1,10 @@
 import { Client, Databases, ID, Query } from 'appwrite'
 
-const PROJECT_ID = import.meta.env.VITE_APPWRITE_PROJECT_ID;
-const DATABASE_ID = import.meta.env.VITE_APPWRITE_DATABASE_ID;
-const COLLECTION_ID = import.meta.env.VITE_APPWRITE_COLLECTION_ID;
+// En principe, ces variables d'environnement sont définies dans un fichier .env
+// Mais pour simplifier l'exemple, nous les utilisons directement ici
+const PROJECT_ID = '6900aa380002dd879ac4';
+const DATABASE_ID = '6918f2800017eb0d03fc';
+const COLLECTION_ID = 'metrics136566erefeefe15';
 
 const client = new Client()
   .setEndpoint('https://nyc.cloud.appwrite.io/v1')
